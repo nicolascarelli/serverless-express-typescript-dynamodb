@@ -1,5 +1,6 @@
 const validate = (file: Express.Multer.File) => {
   if (!file.mimetype.startsWith("image/")) {
+    console.log(file)
     return { error: "Invalid image file" };
   }
   if (file.size > 1000000) {

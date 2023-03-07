@@ -7,27 +7,22 @@ const s3 = new AWS.S3();
 class ImageService {
   static async uploadImage(file: Express.Multer.File): Promise<ImageMetadata> {
     const key = uuidv4();
-    let item: ImageMetadata;
 
-    try {
-      const data = await s3
-        .upload({
-          Bucket: process.env.S3_BUCKET_NAME!,
-          Key: key,
-          Body: file.buffer,
-          ContentType: file.mimetype,
-        })
-        .promise();
+    const data = await s3
+      .upload({
+        Bucket: process.env.S3_BUCKET_NAME!,
+        Key: key,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+      })
+      .promise();
 
-      item = {
-        id: uuidv4(),
-        filename: file.originalname,
-        key,
-        url: data.Location,
-      };
-    } catch (error) {
-      throw new Error('Could not upload image');
-    }
+    const item = {
+      id: uuidv4(),
+      filename: file.originalname,
+      key,
+      url: data.Location,
+    };
 
     return item;
   }

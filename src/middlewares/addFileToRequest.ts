@@ -6,7 +6,13 @@ const addFileToRequest = (
   _res: Response,
   next: NextFunction
 ) => {
-  (req as MulterRequest).file = req.file;
+  if (req.file) {
+    // if only one file was uploaded
+    (req as MulterRequest).file = req.file;
+  } else if (req.files && Array.isArray(req.files)) {
+    // if multiple files were uploaded
+    (req as MulterRequest).files = req.files;
+  }
   next();
 };
 

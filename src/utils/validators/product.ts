@@ -1,11 +1,11 @@
-import Joi from "joi";
-import { CreateOrUpdateProductBody } from "../../interfaces/product";
+import Joi from 'joi';
+import { CreateOrUpdateProductBody } from '../../interfaces/product';
 
-const validateProduct = (product: CreateOrUpdateProductBody) => {
+const validateProduct = (body: CreateOrUpdateProductBody) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     description: Joi.string().required(),
-    price: Joi.number().positive().required(),
+    price: Joi.number().required(),
     images: Joi.array().items(
       Joi.object({
         fieldname: Joi.string().required(),
@@ -16,9 +16,8 @@ const validateProduct = (product: CreateOrUpdateProductBody) => {
         buffer: Joi.any().required(),
       })
     ),
-  });
-
-  return schema.validate(product);
+  }).strict();
+  return schema.validate(body, { abortEarly: false });
 };
 
 export default validateProduct;

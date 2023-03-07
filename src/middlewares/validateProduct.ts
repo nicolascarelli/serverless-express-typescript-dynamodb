@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
-import createOrUpdateValidateCategory from "../utils/validators/category";
+import createOrUpdateValidateProduct from "../utils/validators/product";
 
-export default function validateCategory(
+export default function validateProduct(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const { error } = createOrUpdateValidateCategory(req.body);
+  const { error } = createOrUpdateValidateProduct(req.body);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
   }

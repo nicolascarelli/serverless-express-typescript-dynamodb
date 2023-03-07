@@ -42,30 +42,6 @@ This starter kit includes the following API endpoints:
 - `PUT /products/{id}`: Update a product by ID with an optional list of images.
 - `DELETE /products/{id}`: Delete a product by ID.
 
-## Folder Structure
-
-The following is a high-level overview of the project's folder structure:
-
-├── src/ # Source code
-│ ├── controllers/ # Express controllers
-│ ├── db/ # DynamoDB client and models
-│ ├── middlewares/ # Express middlewares
-│ ├── services/ # Business logic services
-│ ├── types/ # Custom TypeScript types
-│ ├── utils/ # Utility functions
-│ ├── app.ts # Express app initialization
-│ └── serverless.ts # Serverless Framework configuration
-├── tests/ # Unit and integration tests
-├── .eslintrc.json # ESLint configuration
-├── .gitignore # Git ignore rules
-├── package.json # NPM package metadata
-├── README.md # Project documentation
-├── serverless.yml # Serverless Framework configuration
-└── tsconfig.json # TypeScript configuration
-
-csharp
-Copy code
-
 ## Contributing
 
 Contributions to this project are welcome! If you find a bug or want to add a new feature, please open an issue or submit a pull request.

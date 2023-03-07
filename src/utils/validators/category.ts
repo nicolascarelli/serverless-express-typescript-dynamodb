@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { CreateOrUpdateCategoryBody } from "../../interfaces/category";
 
-const createOrValidate = (body: CreateOrUpdateCategoryBody) => {
+const createOrUpdateValidate = (body: CreateOrUpdateCategoryBody) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     description: Joi.string().required(),
@@ -17,4 +17,4 @@ const createOrValidate = (body: CreateOrUpdateCategoryBody) => {
   return schema.validate(body, { abortEarly: false });
 };
 
-export default createOrValidate;
+export default createOrUpdateValidate;

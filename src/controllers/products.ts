@@ -63,7 +63,7 @@ class ProductController {
       }
 
       const updatedProduct = await ProductService.updateProductById(
-        id,
+        product,
         name,
         description,
         price,

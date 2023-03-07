@@ -1,9 +1,8 @@
 import serverless from 'serverless-http';
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import categories from './routes/categories';
-import products from './routes/products';
-import { errorHandler } from './middlewares/errorHandler';
+import categoriesRouter from './routes/categories';
+import productsRouter from './routes/products';
 
 dotenv.config();
 const app = express();
@@ -15,15 +14,8 @@ app.get('/', function (req: Request, res: Response) {
   res.send('Welcome to the Smart API!');
 });
 
-app.use('/categories', categories);
-app.use('/products', products);
+app.use('/categories', categoriesRouter);
+app.use('/products', productsRouter);
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  const error = new Error('Not Found');
-  res.status(404);
-  next(error);
-});
-
-app.use(errorHandler);
 
 export const handler = serverless(app);

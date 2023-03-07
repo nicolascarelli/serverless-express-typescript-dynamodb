@@ -11,7 +11,6 @@ class CategoryController {
       let image: ImageMetadata | undefined;
 
       if (req.file) {
-        console.log('image');
         image = await ImageService.uploadImage(req.file);
       }
 
@@ -29,7 +28,6 @@ class CategoryController {
   static getCategoryById = asyncMiddleware(
     async (req: Request, res: Response): Promise<Response> => {
       const id = req.params.id;
-      console.log('getting category');
       const category = await CategoryService.getCategoryById(id);
 
       if (!category) {
@@ -62,7 +60,7 @@ class CategoryController {
 
       const { name, description } = req.body;
       const updateCategory = await CategoryService.updateCategoryById(
-        id,
+        category,
         name,
         description,
         image
@@ -75,6 +73,9 @@ class CategoryController {
   static deleteCategory = asyncMiddleware(
     async (req: Request, res: Response): Promise<Response> => {
       const id = req.params.id;
+      const category = await CategoryService.getCategoryById(id);
+      if (!category)
+        return res.status(404).json({ error: 'Category not found' });
       await CategoryService.deleteCategoryById(id);
       return res.status(200).json({ success: true });
     }
