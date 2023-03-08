@@ -34,7 +34,11 @@ class ProductService {
       })
       .promise();
 
-    return result.Item as Product | null;
+    if (!result.Item) {
+      return null;
+    }
+
+    return result.Item as Product;
   }
 
   static async getAllProducts(): Promise<Product[]> {
@@ -51,7 +55,6 @@ class ProductService {
     price: number,
     images?: ImageMetadata[]
   ): Promise<Product | null> {
-
     product.name = name;
     product.description = description;
     product.price = price;

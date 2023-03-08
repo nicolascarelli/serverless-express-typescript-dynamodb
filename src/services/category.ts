@@ -32,8 +32,12 @@ class CategoryService {
         Key: { id },
       })
       .promise();
-
-    return result.Item as Category | null;
+  
+    if (!result.Item) {
+      return null;
+    }
+  
+    return result.Item as Category;
   }
 
   static async getAllCategories(): Promise<Category[]> {

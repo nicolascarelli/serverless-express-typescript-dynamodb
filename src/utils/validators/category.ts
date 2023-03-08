@@ -12,6 +12,10 @@ const createOrUpdateValidate = (body: CreateOrUpdateCategoryBody) => {
       mimetype: Joi.string().required(),
       buffer: Joi.binary().required(),
       size: Joi.number().required(),
+      destination: Joi.string().optional(),
+      filename: Joi.string().optional(),
+      path: Joi.string().optional(),
+      stream: Joi.any().optional(),
     }),
   }).strict();
   return schema.validate(body, { abortEarly: false });

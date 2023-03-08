@@ -12,8 +12,12 @@ const validateProduct = (body: CreateOrUpdateProductBody) => {
         originalname: Joi.string().required(),
         encoding: Joi.string().required(),
         mimetype: Joi.string().required(),
+        buffer: Joi.binary().required(),
         size: Joi.number().required(),
-        buffer: Joi.any().required(),
+        destination: Joi.string().optional(),
+        filename: Joi.string().optional(),
+        path: Joi.string().optional(),
+        stream: Joi.any().optional(),
       })
     ),
   }).strict();

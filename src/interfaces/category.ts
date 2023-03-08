@@ -11,5 +11,5 @@ export interface Category {
 export interface CreateOrUpdateCategoryBody {
   name: string;
   description: string;
-  images: Express.Multer.File;
+  image: Express.Multer.File;
 }
