@@ -14,8 +14,8 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:us-west-2:238600808819:table/Category
-        - arn:aws:dynamodb:us-west-2:238600808819:table/Product
+        - arn:aws:dynamodb:us-west-2:{ID}:table/Category
+        - arn:aws:dynamodb:us-west-2:{ID}:table/Product
 
 functions:
   app:
